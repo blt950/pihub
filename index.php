@@ -104,13 +104,23 @@
 <body onload="startUp()">
 
 	<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
-		<h3>Avganger</h3>
-		<a href="#">[3] Ringen: 5m</a>
-		<a href="#">Dulse daikon</a>
-		<a href="#">Zucchini garlic</a>
-		<a href="#">Catsear azuki bean</a>
-		<a href="#">Dandelion bunya</a>
-		<a href="#">Rutabaga</a>
+		<h3><i class="fa fa-bus"></i>&nbsp;&nbsp;Avganger</h3>
+
+		<div id="transportLine">
+			<div class="metroLine">4</div>
+			<div class="metroText">Ringen: 5 min</div>
+		</div>
+		
+		<div id="transportLine">
+			<div class="metroLine">3</div>
+			<div class="metroText">Mortensrud: 7 min</div>
+		</div>
+
+		<div id="transportLine">
+			<div class="metroLine">6</div>
+			<div class="metroText">Sognsvann: 12:53</div>
+		</div>
+		
 	</nav>
 
 	
@@ -121,8 +131,8 @@
 	<div id="weather"></div>
 
 	<div id="clock">
-		<h1><div id="time">15.45</div></h1>
-		<h3><div id="date">6th February</div></h3>
+		<h1 class="clock"><div id="time">15.45</div></h1>
+		<h3 class="clock"><div id="date">6th February</div></h3>
 	</div>
 </body>
 </html>
