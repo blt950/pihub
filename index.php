@@ -17,7 +17,7 @@
 	//
 
 	function fetchBackground(){
-		$.get("fetchBG.php", function(data, status){
+		$.get("ajax/fetchBackground.php", function(data, status){
 			setBackground(data);
 		});
 
