@@ -15,6 +15,7 @@
 	function startUp(){
 		fetchBackground();
 		updateClock();
+		updateWeather();
 	}
 
 	//
@@ -79,8 +80,8 @@
 	// Weather update
 	//
 
-	$(document).ready(function() {
-	  $.simpleWeather({
+	function updateWeather(){
+	  	$.simpleWeather({
 	    location: 'Oslo, Norway',
 	    woeid: '',
 	    unit: 'c',
@@ -93,8 +94,9 @@
 	    error: function(error) {
 	      $("#weather").html('<p>'+error+'</p>');
 	    }
-	  }, setTimeout($.simpleWeather, 1000));
-	});
+	  });
+	  var weatherTimer = setTimeout(updateWeather, 60000);
+	}
 
 	</script>
 
