@@ -23,6 +23,21 @@ html{
 }
 
 /*
+	MENU
+*/
+
+#menuButtons{
+	position: absolute;
+	right: 2%;
+	top: 2%;
+}
+
+i.menuButton{
+	font-size: 22pt;
+}
+
+
+/*
 	CLOCK
 */
 
