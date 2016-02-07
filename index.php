@@ -4,6 +4,7 @@
 	<title>Raspberry Hub</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="js/simpleWeather.min.js" type="text/javascript"></script>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,900italic,100italic,300italic,300,700,700italic,900,500italic,500,400italic' rel='stylesheet' type='text/css'>
 
 	<script>
@@ -70,10 +71,34 @@
 	    return i;
 	}
 
+	//
+	// Weather update
+	//
+
+	$(document).ready(function() {
+	  $.simpleWeather({
+	    location: 'Oslo, Norway',
+	    woeid: '',
+	    unit: 'c',
+	    success: function(weather) {
+	      html = '<h2><i class="weathericon icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
+	      html += '<span class="weatherDesc">'+weather.currently+'</span>';
+	  
+	      $("#weather").html(html);
+	    },
+	    error: function(error) {
+	      $("#weather").html('<p>'+error+'</p>');
+	    }
+	  }, setTimeout($.simpleWeather, 1000));
+	});
+
 	</script>
 
 </head>
 <body onload="startUp()">
+
+	<div id="weather"></div>
+
 	<div id="clock">
 		<h1><div id="time">15.45</div></h1>
 		<h3><div id="date">6th February</div></h3>
