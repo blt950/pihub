@@ -1,5 +1,7 @@
 <?php
 
+	date_default_timezone_set("America/Los_Angeles");
+
 	$content = file_get_contents('http://reisapi.ruter.no/StopVisit/GetDepartures/3010370');
 	$array = json_decode($content,TRUE);
 
@@ -15,7 +17,7 @@
 			$time = $array[$i]["MonitoredVehicleJourney"]["MonitoredCall"]["ExpectedArrivalTime"];
 			$time = strtotime($time);
 
-			if($time - time() < 660){
+			if($time - time() < 630){ // if under 10.5 minutes
 
 				if($time < 45){
 					$time = "nå";
