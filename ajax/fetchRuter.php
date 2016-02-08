@@ -1,6 +1,6 @@
 <?php
 
-	date_default_timezone_set("America/Los_Angeles");
+	date_default_timezone_set("Europe/Oslo");
 
 	$content = file_get_contents('http://reisapi.ruter.no/StopVisit/GetDepartures/3010370');
 	$array = json_decode($content,TRUE);
