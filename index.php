@@ -16,6 +16,7 @@
 		fetchBackground();
 		updateClock();
 		updateWeather();
+		updateRuter();
 	}
 
 	//
@@ -98,6 +99,19 @@
 	  var weatherTimer = setTimeout(updateWeather, 60000);
 	}
 
+	//
+	//	Ruter update
+	// 
+
+	function updateRuter(){
+
+		$.get("ajax/fetchRuter.php", function(data, status){
+			document.getElementById('ruterRealtime').innerHTML = data;
+		});
+
+		var ruterTimer = setTimeout(updateRuter, 3500);
+	}
+
 	</script>
 
 </head>
@@ -106,33 +120,24 @@
 	<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
 		<h3><i class="fa fa-bus"></i>&nbsp;&nbsp;Avganger</h3>
 
-		<div id="transportLine">
-			<div class="metroLine">4</div>
-			<div class="metroText">Ringen: 5 min</div>
-		</div>
-		
-		<div id="transportLine">
-			<div class="metroLine">3</div>
-			<div class="metroText">Mortensrud: 7 min</div>
-		</div>
-
-		<div id="transportLine">
-			<div class="metroLine">6</div>
-			<div class="metroText">Sognsvann: 12:53</div>
-		</div>
+		<div id="ruterRealtime"></div>
 		
 	</nav>
 
+	<div id="container">
 	
-	<div id="menuButtons">
-		<i id="showRight" class="menuButton fa fa-bus"></i>
+		<div id="menuButtons">
+			<i id="showRight" class="menuButton fa fa-bus"></i>
+		</div>
+
+		<div id="weather"></div>
+
+		<div id="clock">
+			<h1 class="clock"><div id="time">15.45</div></h1>
+			<h3 class="clock"><div id="date">6th February</div></h3>
+		</div>
+
 	</div>
 
-	<div id="weather"></div>
-
-	<div id="clock">
-		<h1 class="clock"><div id="time">15.45</div></h1>
-		<h3 class="clock"><div id="date">6th February</div></h3>
-	</div>
 </body>
 </html>
