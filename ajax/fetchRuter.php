@@ -19,7 +19,7 @@
 
 			if($time - time() < 630){ // if under 10.5 minutes
 
-				if($time < 45){
+				if($time - time() < 45){
 					$time = "nå";
 				} else {
 					$time = round(($time-time())/60);
