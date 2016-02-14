@@ -87,6 +87,8 @@ if ( typeof define === 'function' && define.amd ) {
 
 window.onload = function(){ 
 
+  var autocloseTimer;
+
 	var menuRight = document.getElementById( 'cbp-spmenu-s2' );
 	var showRight = document.getElementById( 'showRight' );
 	var body = document.body;
@@ -95,6 +97,14 @@ window.onload = function(){
 	showRight.onclick = function() {
 		if(open) open = false; else open = true;
 		classie.toggle( menuRight, 'cbp-spmenu-open' );
+
+    // Auto-close after timeout
+    autocloseTimer = setTimeout(function(){ 
+      classie.toggle( menuRight, 'cbp-spmenu-open' );  
+      open = false; 
+    }, 20000);
+
+
 	};
 
 	$('html').click(function(e) {
@@ -103,6 +113,7 @@ window.onload = function(){
 			if(open){
 				classie.toggle( menuRight, 'cbp-spmenu-open' );  
 				open = false;
+        clearTimeout(autocloseTimer);
 			}             
 		}	             
 	}); 
