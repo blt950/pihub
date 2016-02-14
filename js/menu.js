@@ -29,26 +29,26 @@ var hasClass, addClass, removeClass;
 
 if ( 'classList' in document.documentElement ) {
   hasClass = function( elem, c ) {
-    return elem.classList.contains( c );
+	return elem.classList.contains( c );
   };
   addClass = function( elem, c ) {
-    elem.classList.add( c );
+	elem.classList.add( c );
   };
   removeClass = function( elem, c ) {
-    elem.classList.remove( c );
+	elem.classList.remove( c );
   };
 }
 else {
   hasClass = function( elem, c ) {
-    return classReg( c ).test( elem.className );
+	return classReg( c ).test( elem.className );
   };
   addClass = function( elem, c ) {
-    if ( !hasClass( elem, c ) ) {
-      elem.className = elem.className + ' ' + c;
-    }
+	if ( !hasClass( elem, c ) ) {
+	  elem.className = elem.className + ' ' + c;
+	}
   };
   removeClass = function( elem, c ) {
-    elem.className = elem.className.replace( classReg( c ), ' ' );
+	elem.className = elem.className.replace( classReg( c ), ' ' );
   };
 }
 
@@ -91,13 +91,13 @@ window.onload = function(){
   var ruterCloseTimer;
   var countCloseTimer;
 
-	var ruterMenu = document.getElementById( 'cbp-spmenu-ruter' );
+  var ruterMenu = document.getElementById( 'cbp-spmenu-ruter' );
   var countMenu = document.getElementById( 'cbp-spmenu-countdown' );
 
-	var showRuterButton = document.getElementById( 'showRuterButton' );
+  var showRuterButton = document.getElementById( 'showRuterButton' );
   var showCountButton = document.getElementById( 'showCountButton' );
 	
-	var ruterOpen = false;
+  var ruterOpen = false;
   var countOpen = false;
 
   // == Ruter BUTTON ==
@@ -105,23 +105,23 @@ window.onload = function(){
 		if(ruterOpen) ruterOpen = false; else ruterOpen = true;
 		classie.toggle( ruterMenu, 'cbp-spmenu-open' );
 
-    // Auto-close after timeout
-    ruterCloseTimer = setTimeout(function(){ 
-      classie.toggle( ruterMenu, 'cbp-spmenu-open' );  
-      ruterOpen = false; 
-    }, 20000);
+	// Auto-close after timeout
+	ruterCloseTimer = setTimeout(function(){ 
+	  classie.toggle( ruterMenu, 'cbp-spmenu-open' );  
+	  ruterOpen = false; 
+	}, 20000);
 	};
 
   // == Countdown BUTTON ==
   showCountButton.onclick = function() {
-    if(countOpen) countOpen = false; else countOpen = true;
-    classie.toggle( countMenu, 'cbp-spmenu-open' );
+	if(countOpen) countOpen = false; else countOpen = true;
+	classie.toggle( countMenu, 'cbp-spmenu-open' );
 
-    // Auto-close after timeout
-    countCloseTimer = setTimeout(function(){ 
-      classie.toggle( countMenu, 'cbp-spmenu-open' );  
-      countOpen = false; 
-    }, 20000);
+	// Auto-close after timeout
+	countCloseTimer = setTimeout(function(){ 
+	  classie.toggle( countMenu, 'cbp-spmenu-open' );  
+	  countOpen = false; 
+	}, 20000);
   };
 
   // == Close ==
@@ -132,12 +132,12 @@ window.onload = function(){
 			if(ruterOpen){
 				classie.toggle( ruterMenu, 'cbp-spmenu-open' );  
 				ruterOpen = false;
-        clearTimeout(ruterCloseTimer);
-			} else if(countMenu){
-        classie.toggle( countMenu, 'cbp-spmenu-open' );  
-        countMenu = false;
-        clearTimeout(countCloseTimer);
-      }              
+				clearTimeout(ruterCloseTimer);
+			} else if(countOpen){
+				classie.toggle( countMenu, 'cbp-spmenu-open' );  
+				countMenu = false;
+				clearTimeout(countCloseTimer);
+			}              
 		}              
 	}); 
 }
