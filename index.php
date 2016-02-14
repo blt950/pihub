@@ -33,10 +33,15 @@
 		
 	</nav>
 
+	<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-countdown">
+		<h3><i class="fa fa-clock-o"></i>&nbsp;&nbsp;Tidtaker</h3>
+	</nav>
+
 	<div id="container">
 	
 		<div id="menuButtons">
-			<i id="showRight" class="menuButton fa fa-bus"></i>
+			<i id="showRuterButton" class="menuButton fa fa-bus"></i><br><br>
+			<i id="showCountButton" class="menuButton fa fa-clock-o"></i>
 		</div>
 
 		<div id="weather"></div>

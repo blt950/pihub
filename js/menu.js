@@ -87,35 +87,57 @@ if ( typeof define === 'function' && define.amd ) {
 
 window.onload = function(){ 
 
-  var autocloseTimer;
+  var body = document.body;
+  var ruterCloseTimer;
+  var countCloseTimer;
 
-	var menuRight = document.getElementById( 'cbp-spmenu-ruter' );
-	var showRight = document.getElementById( 'showRight' );
-	var body = document.body;
-	var open = false;
+	var ruterMenu = document.getElementById( 'cbp-spmenu-ruter' );
+  var countMenu = document.getElementById( 'cbp-spmenu-countdown' );
 
-	showRight.onclick = function() {
-		if(open) open = false; else open = true;
-		classie.toggle( menuRight, 'cbp-spmenu-open' );
+	var showRuterButton = document.getElementById( 'showRuterButton' );
+  var showCountButton = document.getElementById( 'showCountButton' );
+	
+	var ruterOpen = false;
+  var countOpen = false;
+
+  // == Ruter BUTTON ==
+	showRuterButton.onclick = function() {
+		if(ruterOpen) ruterOpen = false; else ruterOpen = true;
+		classie.toggle( ruterMenu, 'cbp-spmenu-open' );
 
     // Auto-close after timeout
-    autocloseTimer = setTimeout(function(){ 
-      classie.toggle( menuRight, 'cbp-spmenu-open' );  
-      open = false; 
+    ruterCloseTimer = setTimeout(function(){ 
+      classie.toggle( ruterMenu, 'cbp-spmenu-open' );  
+      ruterOpen = false; 
     }, 20000);
-
-
 	};
 
-	$('html').click(function(e) {
-		if(!$(e.target).is('#showRight') )
-		{
-			if(open){
-				classie.toggle( menuRight, 'cbp-spmenu-open' );  
-				open = false;
-        clearTimeout(autocloseTimer);
-			}             
-		}	             
-	}); 
+  // == Countdown BUTTON ==
+  showCountButton.onclick = function() {
+    if(countOpen) countOpen = false; else countOpen = true;
+    classie.toggle( countMenu, 'cbp-spmenu-open' );
 
+    // Auto-close after timeout
+    countCloseTimer = setTimeout(function(){ 
+      classie.toggle( countMenu, 'cbp-spmenu-open' );  
+      countOpen = false; 
+    }, 20000);
+  };
+
+  // == Close ==
+
+	$('html').click(function(e) {
+		if(!$(e.target).is('#showRuterButton') && !$(e.target).is('#showCountButton') )
+		{
+			if(ruterOpen){
+				classie.toggle( ruterMenu, 'cbp-spmenu-open' );  
+				ruterOpen = false;
+        clearTimeout(ruterCloseTimer);
+			} else if(countMenu){
+        classie.toggle( countMenu, 'cbp-spmenu-open' );  
+        countMenu = false;
+        clearTimeout(countCloseTimer);
+      }              
+		}              
+	}); 
 }
