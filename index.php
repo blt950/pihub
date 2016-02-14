@@ -26,7 +26,7 @@
 </head>
 <body onload="startUp()">
 
-	<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+	<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-ruter">
 		<h3><i class="fa fa-bus"></i>&nbsp;&nbsp;Avganger</h3>
 
 		<div id="ruterRealtime"></div>

@@ -89,7 +89,7 @@ window.onload = function(){
 
   var autocloseTimer;
 
-	var menuRight = document.getElementById( 'cbp-spmenu-s2' );
+	var menuRight = document.getElementById( 'cbp-spmenu-ruter' );
 	var showRight = document.getElementById( 'showRight' );
 	var body = document.body;
 	var open = false;
