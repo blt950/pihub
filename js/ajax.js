@@ -100,5 +100,5 @@ function updateRuter(){
 		document.getElementById('ruterRealtime').innerHTML = data;
 	});
 
-	var ruterTimer = setTimeout(updateRuter, 3500);
+	var ruterTimer = setTimeout(updateRuter, 15000);
 }
