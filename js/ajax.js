@@ -96,9 +96,54 @@ function updateWeather(){
 
 function updateRuter(){
 
-	$.get("ajax/fetchRuter.php", function(data, status){
-		document.getElementById('ruterRealtime').innerHTML = data;
-	});
+    var html = "";
+    var url = 'http://api.ruter.no/ReisRest/RealTime/GetRealTimeData/3010370';
+    
+    $.ajax({
+        type: 'GET',
+        url: url,
+        dataType: 'jsonp',
+        success: function(data){
 
-	var ruterTimer = setTimeout(updateRuter, 15000);
+            var maxResults = 6;
+            var i = 0; var results = 0;
+
+            while(results < maxResults){
+
+                if(data[i]["DirectionRef"] == 1){
+
+                    var line = data[i]["LineRef"];
+                    var dest = data[i]["DestinationName"];
+
+                    var time = data[i]["ExpectedArrivalTime"];
+                    var time = time.substr(6, 13)/1000;
+
+                    var now = Math.round(Date.now()/1000);
+
+                    if(time - now < 630){ // if under 10.5 minutes
+                        if(time - now < 45){
+                            time = "nå";
+                        } else {
+                            time = Math.round((time-now)/60);
+                            time = time + " min";
+                        }
+                
+                    } else {
+                        time = new Date(time);
+                        time = time.getHours() + ":" + checkTime(time.getMinutes());
+                    }
+
+                    html = html + "<div id='transportLine'><div class='metroLine line"+line+"'>"+line+"</div><div class='metroText'>"+dest+": "+time+"</div></div>"
+                    results++;
+                }
+
+                i++;
+
+            }
+
+            document.getElementById('ruterRealtime').innerHTML = html;
+            var ruterTimer = setTimeout(updateRuter, 50000);
+            
+        }
+    });
 }
