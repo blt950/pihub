@@ -142,7 +142,7 @@ function updateRuter(){
             }
 
             document.getElementById('ruterRealtime').innerHTML = html;
-            var ruterTimer = setTimeout(updateRuter, 50000);
+            var ruterTimer = setTimeout(updateRuter, 5000);
             
         }
     });
