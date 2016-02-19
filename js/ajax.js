@@ -116,20 +116,20 @@ function updateRuter(){
                     var dest = data[i]["DestinationName"];
 
                     var time = data[i]["ExpectedArrivalTime"];
-                    var time = time.substr(6, 13)/1000;
+                    var time = time.substr(6, 13);
 
-                    var now = Math.round(Date.now()/1000);
+                    var now = Date.now();
 
-                    if(time - now < 630){ // if under 10.5 minutes
-                        if(time - now < 45){
+                    if(time - now < 630000){ // if under 10.5 minutes
+                        if(time - now < 45000){
                             time = "nå";
                         } else {
-                            time = Math.round((time-now)/60);
+                            time = Math.round((time-now)/1000/60);
                             time = time + " min";
                         }
                 
                     } else {
-                        time = new Date(time);
+                        time = new Date(time*1000/1000); // I've no idea why I need to do *1000/1000, but it fixes invalid date error.
                         time = time.getHours() + ":" + checkTime(time.getMinutes());
                     }
 
