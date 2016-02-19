@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Raspberry Hub</title>
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/menu.css">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
