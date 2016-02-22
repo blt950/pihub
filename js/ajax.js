@@ -110,7 +110,7 @@ function updateRuter(){
 
             while(results < maxResults){
 
-                if(data[i]["DirectionRef"] == 1){
+                if(data[i]["DirectionRef"] && data[i]["DirectionRef"] == 1){
 
                     var line = data[i]["LineRef"];
                     var dest = data[i]["DestinationName"];
@@ -142,7 +142,7 @@ function updateRuter(){
             }
 
             document.getElementById('ruterRealtime').innerHTML = html;
-            var ruterTimer = setTimeout(updateRuter, 5000);
+            var ruterTimer = setTimeout(updateRuter, 1);
             
         }
     });
