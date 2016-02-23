@@ -110,7 +110,7 @@ function updateRuter(){
 
             while(results < maxResults){
 
-                if(data[i]["DirectionRef"] && data[i]["DirectionRef"] == 1){
+                if(typeof data[i]["DirectionRef"] != "undefined" && data[i]["DirectionRef"] == 1){
 
                     var line = data[i]["LineRef"];
                     var dest = data[i]["DestinationName"];
