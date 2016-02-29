@@ -110,6 +110,8 @@ function updateRuter(){
 
             while(results < maxResults){
 
+            	if(i >= maxResults*4) break; // Breaks a infite loop after few attempts.
+
                 if(typeof data[i] != "undefined" && data[i]["DirectionRef"] == 1){
 
                     var line = data[i]["LineRef"];
@@ -136,7 +138,6 @@ function updateRuter(){
                     html = html + "<div id='transportLine'><div class='metroLine line"+line+"'>"+line+"</div><div class='metroText'>"+dest+": "+time+"</div></div>"
                     results++;
                 }
-
                 i++;
 
             }
