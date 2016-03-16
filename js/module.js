@@ -17,3 +17,9 @@ function loadModule(module) {
     window[module + "_init"]();
   });
 }
+
+
+//Module API to load CSS files
+function loadCSS(module, file) {
+  $("head").append($('<link rel="stylesheet" type="text/css" />').attr('href', 'modules/'+module+'/css/'+file));
+}

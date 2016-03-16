@@ -1,6 +1,6 @@
 $(function(){
   //Append the brightness filter
-  $("body").append('<div id="brightnessfilter" onclick="closeAllMenus()" style="width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; z-index: 300; pointer-events: none; background:rgba(0, 0, 0, 0)"></div>');
+  $("body").append('<div id="brightnessfilter" onclick="closeAllMenus()" style="width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; z-index: 10000; pointer-events: none; background:rgba(0, 0, 0, 0)"></div>');
 
   //Jquery UI for brightness
   $("#brightness").slider({

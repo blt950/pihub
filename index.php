@@ -22,12 +22,12 @@
 
 </head>
 <body>
-	<div id="menu1" style="background:rgba(255, 255, 255, 0.9); color: black; width: 250px;" class="menu menu-right">
+	<div id="menu1" style="background:rgba(255, 255, 255, 0.8); color: black; width: 250px;" class="menu menu-right">
 		<div class="mHeader" style="color: white;"><h1><i class="fa fa-bus"></i>&nbsp;&nbsp;Avganger</h1></div>
 		<div id="ruterRealtime"></div>
 	</div>
 
-	<div id="menu2" style="background:rgba(255, 255, 255, 0.9); width: 250px;" class="menu menu-left">
+	<div id="menu2" style="background:rgba(255, 255, 255, 0.8); width: 250px;" class="menu menu-left">
 		<h3><i class="fa fa-clock-o"></i>&nbsp;&nbsp;Tidtaker</h3>
 	</div>
 
@@ -40,8 +40,6 @@
 	</div>
 
 	<div id="weather"></div>
-
-
 
 	<div id="container">
 
