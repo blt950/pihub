@@ -39,7 +39,7 @@
 		<br style="clear: both;" />
 	</div>
 
-	<div id="weather"></div>
+	<div id="weather"><?php include("ajax/fetchWeather.php"); ?></div>
 
 	<div id="container">
 
@@ -61,7 +61,7 @@
 		initMenu();
 		fetchBackground();
 		updateClock();
-		updateWeather();
+		/*updateWeather();*/
 		updateRuter();
 	});
 	</script>
