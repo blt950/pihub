@@ -110,7 +110,7 @@ function updateRuter(){
             var maxResults = 6;
             var i = 0; var results = 0;
 
-						if(results == 0) {
+						if(data.length == 0) {
 							html = '<div style="width: 100%; text-align:center; padding-top: 10px;">Det går ingen busser<br /> for øyeblikket!</div>'
 						} else {
 	            while(results < maxResults){
