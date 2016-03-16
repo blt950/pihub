@@ -1,143 +1,126 @@
-/*!
- * classie v1.0.1
- * class helper functions
- * from bonzo https://github.com/ded/bonzo
- * MIT license
- * 
- * classie.has( elem, 'my-class' ) -> true/false
- * classie.add( elem, 'my-new-class' )
- * classie.remove( elem, 'my-unwanted-class' )
- * classie.toggle( elem, 'my-class' )
- */
+/*=================**
+**     SETTINGS    **
+**=================**/
 
-/*jshint browser: true, strict: true, undef: true, unused: true */
-/*global define: false, module: false */
+// Animation Speed
+var animSpeed = 300;
 
-( function( window ) {
 
-'use strict';
 
-// class helper functions from bonzo https://github.com/ded/bonzo
+//Variables used by the system
+var menuInit = 0;
 
-function classReg( className ) {
-  return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+var toggledMenus = [];
+var togglingMenu = 0;
+
+function initMenu() {
+  //Init Menus
+  $('.menu').each(function(i, obj) {
+
+    //Code for right menu
+    if($(this).hasClass("menu-right")) {
+      $(this).css('right', '-' + $(this).width() + 'px');
+    }
+
+    //Code for left menu
+    if($(this).hasClass("menu-left")) {
+      $(this).css('left', '-' + $(this).width() + 'px');
+    }
+
+    //Code for bottom menu
+    if($(this).hasClass("menu-bottom")) {
+      $(this).css('bottom', '-' + $(this).width() + 'px');
+    }
+  });
+  if(menuInit == 0) {
+    $("body").append('<div id="bodyOverlay" onclick="closeAllMenus()" style="width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; z-index: 100; display: none;"></div>');
+  }
+  return 0;
 }
 
-// classList support for class management
-// altho to be fair, the api sucks because it won't accept multiple classes at once
-var hasClass, addClass, removeClass;
-
-if ( 'classList' in document.documentElement ) {
-  hasClass = function( elem, c ) {
-	return elem.classList.contains( c );
-  };
-  addClass = function( elem, c ) {
-	elem.classList.add( c );
-  };
-  removeClass = function( elem, c ) {
-	elem.classList.remove( c );
-  };
-}
-else {
-  hasClass = function( elem, c ) {
-	return classReg( c ).test( elem.className );
-  };
-  addClass = function( elem, c ) {
-	if ( !hasClass( elem, c ) ) {
-	  elem.className = elem.className + ' ' + c;
-	}
-  };
-  removeClass = function( elem, c ) {
-	elem.className = elem.className.replace( classReg( c ), ' ' );
-  };
+function toggleMenu(menu) {
+  if(togglingMenu == 0) {
+    togglingMenu = 1;
+    if($.inArray(menu, toggledMenus) == 0) {
+      closeMenu(menu);
+      return 1;
+    } else {
+      openMenu(menu);
+      return 1;
+    }
+  }
+  return 0;
 }
 
-function toggleClass( elem, c ) {
-  var fn = hasClass( elem, c ) ? removeClass : addClass;
-  fn( elem, c );
+function openMenu(menu) {
+  $("#bodyOverlay").show();
+  toggledMenus.push(menu);
+
+  //Code for right menu
+  if($("#" + menu).hasClass("menu-right")) {
+    $("#" + menu).animate({
+      right: 0
+    }, animSpeed, function() {
+      togglingMenu = 0;
+    });
+  }
+
+  //Code for left menu
+  if($("#" + menu).hasClass("menu-left")) {
+    $("#" + menu).animate({
+      left: 0
+    }, animSpeed, function() {
+      togglingMenu = 0;
+    });
+  }
+
+  //Code for bottom menu
+  if($("#" + menu).hasClass("menu-bottom")) {
+    $("#" + menu).animate({
+      bottom: 0
+    }, animSpeed, function() {
+      togglingMenu = 0;
+    });
+  }
 }
 
-var classie = {
-  // full names
-  hasClass: hasClass,
-  addClass: addClass,
-  removeClass: removeClass,
-  toggleClass: toggleClass,
-  // short names
-  has: hasClass,
-  add: addClass,
-  remove: removeClass,
-  toggle: toggleClass
-};
+function closeMenu(menu) {
+  $("#bodyOverlay").hide();
+  toggledMenus = jQuery.grep(toggledMenus, function(value) {
+    return value != menu;
+  });
 
-// transport
-if ( typeof define === 'function' && define.amd ) {
-  // AMD
-  define( classie );
-} else if ( typeof exports === 'object' ) {
-  // CommonJS
-  module.exports = classie;
-} else {
-  // browser global
-  window.classie = classie;
+  //Code for right menu
+  if($("#" + menu).hasClass("menu-right")) {
+    $("#" + menu).animate({
+      right: '-' + $("#" + menu).width()
+    }, animSpeed, function() {
+      togglingMenu = 0;
+    });
+  }
+
+  //Code for left menu
+  if($("#" + menu).hasClass("menu-left")) {
+    $("#" + menu).animate({
+      left: '-' + $("#" + menu).width()
+    }, animSpeed, function() {
+      togglingMenu = 0;
+    });
+  }
+
+  //Code for bottom menu
+  if($("#" + menu).hasClass("menu-bottom")) {
+    $("#" + menu).animate({
+      bottom: '-' + $("#" + menu).height()
+    }, animSpeed, function() {
+      togglingMenu = 0;
+    });
+  }
 }
 
-})( window );
-
-
-window.onload = function(){ 
-
-  var body = document.body;
-  var ruterCloseTimer;
-  var countCloseTimer;
-
-  var ruterMenu = document.getElementById( 'cbp-spmenu-ruter' );
-  var countMenu = document.getElementById( 'cbp-spmenu-countdown' );
-
-  var showRuterButton = document.getElementById( 'showRuterButton' );
-  var showCountButton = document.getElementById( 'showCountButton' );
-	
-  var ruterOpen = false;
-  var countOpen = false;
-
-  // == Ruter BUTTON ==
-	showRuterButton.onclick = function() {
-		if(ruterOpen) ruterOpen = false; else ruterOpen = true;
-		classie.toggle( ruterMenu, 'cbp-spmenu-open' );
-
-	// Auto-close after timeout
-	ruterCloseTimer = setTimeout(function(){ 
-	  classie.toggle( ruterMenu, 'cbp-spmenu-open' );  
-	  ruterOpen = false; 
-	}, 20000);
-	};
-
-  // == Countdown BUTTON ==
-  showCountButton.onclick = function() {
-	if(countOpen) countOpen = false; else countOpen = true;
-	classie.toggle( countMenu, 'cbp-spmenu-open' );
-
-	// Auto-close after timeout
-	countCloseTimer = setTimeout(function(){ 
-	  classie.toggle( countMenu, 'cbp-spmenu-open' );  
-	  countOpen = false; 
-	}, 20000);
-  };
-
-  // == Close ==
-
-	$('html').click(function(e) {
-		if(!$(e.target).is('#showRuterButton') && !$(e.target).is('#showCountButton') )
-		{
-			if(ruterOpen){
-				classie.toggle( ruterMenu, 'cbp-spmenu-open' );  
-				ruterOpen = false;
-				clearTimeout(ruterCloseTimer);
-			} else if(countOpen){
-				classie.toggle( countMenu, 'cbp-spmenu-open' );  
-				countMenu = false;
-				clearTimeout(countCloseTimer);
-			}              
-		}              
-	}); 
+function closeAllMenus() {
+  $.each(toggledMenus, function (index, value) {
+    closeMenu(value);
+  });
+  return 0;
 }

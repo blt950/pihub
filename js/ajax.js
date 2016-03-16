@@ -1,5 +1,5 @@
 
-/* 
+/*
 *  ===============================
 *			Background
 *  ===============================
@@ -9,9 +9,11 @@ function fetchBackground(){
 	$.get("ajax/fetchBackground.php", function(data, status){
 		setBackground(data);
 	});
-
-	var backgroundTimer = setTimeout(fetchBackground, 60000);
 }
+
+setTimeout(function () {
+	fetchBackground();
+}, 60000);
 
 function setBackground(backgroundUri){
 	$("html").css({"background":"url("+backgroundUri+") no-repeat center center fixed"});
@@ -20,7 +22,7 @@ function setBackground(backgroundUri){
 
 
 
-/* 
+/*
 *  ===============================
 *		  Clock and date
 *  ===============================
@@ -63,7 +65,7 @@ function checkTime(i) {
     return i;
 }
 
-/* 
+/*
 *  ===============================
 *			  Weather
 *  ===============================
@@ -77,7 +79,7 @@ function updateWeather(){
     success: function(weather) {
       html = '<h2><i class="weathericon icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
       html += '<span class="weatherDesc">'+weather.currently+'</span>';
-  
+
       $("#weather").html(html);
     },
     error: function(error) {
@@ -88,17 +90,17 @@ function updateWeather(){
 }
 
 
-/* 
+/*
 *  ===============================
 *	       Ruter Realtime
 *  ===============================
-*/ 
+*/
 
 function updateRuter(){
 
     var html = "";
     var url = 'http://api.ruter.no/ReisRest/RealTime/GetRealTimeData/3010370';
-    
+
     $.ajax({
         type: 'GET',
         url: url,
@@ -108,43 +110,47 @@ function updateRuter(){
             var maxResults = 6;
             var i = 0; var results = 0;
 
-            while(results < maxResults){
+						if(results == 0) {
+							html = '<div style="width: 100%; text-align:center; padding-top: 10px;">Det går ingen busser<br /> for øyeblikket!</div>'
+						} else {
+	            while(results < maxResults){
 
-            	if(i >= maxResults*4) break; // Breaks a infite loop after few attempts.
+	            	if(i >= maxResults*4) break; // Breaks a infite loop after few attempts.
 
-                if(typeof data[i] != "undefined" && data[i]["DirectionRef"] == 1){
+	                if(typeof data[i] != "undefined" && data[i]["DirectionRef"] == 1){
 
-                    var line = data[i]["LineRef"];
-                    var dest = data[i]["DestinationName"];
+	                    var line = data[i]["LineRef"];
+	                    var dest = data[i]["DestinationName"];
 
-                    var time = data[i]["ExpectedArrivalTime"];
-                    var time = time.substr(6, 13);
+	                    var time = data[i]["ExpectedArrivalTime"];
+	                    var time = time.substr(6, 13);
 
-                    var now = Date.now();
+	                    var now = Date.now();
 
-                    if(time - now < 630000){ // if under 10.5 minutes
-                        if(time - now < 45000){
-                            time = "nå";
-                        } else {
-                            time = Math.round((time-now)/1000/60);
-                            time = time + " min";
-                        }
-                
-                    } else {
-                        time = new Date(time*1000/1000); // I've no idea why I need to do *1000/1000, but it fixes invalid date error.
-                        time = time.getHours() + ":" + checkTime(time.getMinutes());
-                    }
+	                    if(time - now < 630000){ // if under 10.5 minutes
+	                        if(time - now < 45000){
+	                            time = "nå";
+	                        } else {
+	                            time = Math.round((time-now)/1000/60);
+	                            time = time + " min";
+	                        }
 
-                    html = html + "<div id='transportLine'><div class='metroLine line"+line+"'>"+line+"</div><div class='metroText'>"+dest+": "+time+"</div></div>"
-                    results++;
-                }
-                i++;
+	                    } else {
+	                        time = new Date(time*1000/1000); // I've no idea why I need to do *1000/1000, but it fixes invalid date error.
+	                        time = time.getHours() + ":" + checkTime(time.getMinutes());
+	                    }
 
-            }
+	                    html = html + "<div id='transportLine'><div class='metroLine line"+line+"'>"+line+"</div><div class='metroText'>"+dest+": "+time+"</div></div>"
+	                    results++;
+	                }
+	                i++;
 
-            document.getElementById('ruterRealtime').innerHTML = html;
+	            }
+						}
+
+						$("#ruterRealtime").html(html);
             var ruterTimer = setTimeout(updateRuter, 5000);
-            
+
         }
     });
 }
