@@ -27,11 +27,6 @@
 		<div id="ruterRealtime"></div>
 	</div>
 
-	<div id="menu2" style="background:rgba(255, 255, 255, 0.8); width: 250px;" class="menu menu-left">
-		<h3><i class="fa fa-clock-o"></i>&nbsp;&nbsp;Tidtaker</h3>
-		<input type="text">
-	</div>
-
 	<div id="menu3" style="background:rgba(255, 255, 255, 1); height: 200px;" class="menu menu-bottom">
 		<div style="width: 50%; float: left; padding: 20px; color: black;">
 			<b>Brightness</b>:<br />
@@ -46,7 +41,6 @@
 
 		<div id="menuButtons">
 			<i id="showRuterButton" onclick="toggleMenu('menu1')" class="menuButton fa fa-bus"></i>
-			<i id="showCountButton" onclick="toggleMenu('menu2')" class="menuButton fa fa-clock-o"></i>
 		</div>
 
 
