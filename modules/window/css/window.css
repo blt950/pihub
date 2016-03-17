@@ -1,0 +1,38 @@
+.window_window {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  z-index: 400;
+  display:none;
+  background: white;
+  color: black;
+}
+
+.window_header {
+  	width: 100%;
+  	height: 60px;
+    line-height: 60px;
+  	background: #32374B;
+  	font-weight: 300;
+    color:white;
+    font-size: 30px;
+}
+
+.window_button {
+  width: 10%;
+  float: left;
+  text-align: center;
+}
+
+.window_title {
+  width: 80%;
+  text-align: center;
+  float:left;
+}
+
+.window_content {
+  width: 100%;
+  height: 100%;
+}
