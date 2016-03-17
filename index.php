@@ -29,6 +29,7 @@
 
 	<div id="menu2" style="background:rgba(255, 255, 255, 0.8); width: 250px;" class="menu menu-left">
 		<h3><i class="fa fa-clock-o"></i>&nbsp;&nbsp;Tidtaker</h3>
+		<input type="text">
 	</div>
 
 	<div id="menu3" style="background:rgba(255, 255, 255, 1); height: 200px;" class="menu menu-bottom">
