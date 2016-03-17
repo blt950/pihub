@@ -22,10 +22,6 @@
 
 </head>
 <body>
-	<div id="menu1" style="background:rgba(255, 255, 255, 0.8); color: black; width: 250px;" class="menu menu-right">
-		<div class="mHeader" style="color: white;"><h1><i class="fa fa-bus"></i>&nbsp;&nbsp;Avganger</h1></div>
-		<div id="ruterRealtime"></div>
-	</div>
 
 	<div id="menu3" style="background:rgba(255, 255, 255, 1); height: 200px;" class="menu menu-bottom">
 		<div style="width: 50%; float: left; padding: 20px; color: black;">
@@ -39,9 +35,7 @@
 
 	<div id="container">
 
-		<div id="menuButtons">
-			<i id="showRuterButton" onclick="toggleMenu('menu1')" class="menuButton fa fa-bus"></i>
-		</div>
+		<div id="menuButtons"></div>
 
 
 		<div id="clock">
