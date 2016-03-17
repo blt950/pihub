@@ -34,7 +34,7 @@
 		initMenu();
 		fetchBackground();
 		updateClock();
-		/*updateWeather();*/
+		updateWeather();
 	});
 	</script>
 

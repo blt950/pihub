@@ -72,19 +72,10 @@ function checkTime(i) {
 */
 
 function updateWeather(){
-  	$.simpleWeather({
-    location: 'Oslo, Norway',
-    woeid: '',
-    unit: 'c',
-    success: function(weather) {
-      html = '<h2><i class="weathericon icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-      html += '<span class="weatherDesc">'+weather.currently+'</span>';
 
-      $("#weather").html(html);
-    },
-    error: function(error) {
-      $("#weather").html('<p>'+error+'</p>');
-    }
-  });
-  var weatherTimer = setTimeout(updateWeather, 60000);
+    $.get("ajax/fetchWeather.php", function( data ) {
+        $("#weather").html(data);
+    });
+
+    var weatherTimer = setTimeout(updateWeather, 60000);
 }
