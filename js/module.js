@@ -23,3 +23,9 @@ function loadModule(module) {
 function loadCSS(module, file) {
   $("head").append($('<link rel="stylesheet" type="text/css" />').attr('href', 'modules/'+module+'/css/'+file));
 }
+
+
+// Add HTML to body
+function addBodyHTML(HTML){
+  $("body").append(HTML);
+}

@@ -5,13 +5,17 @@
 // Animation Speed
 var animSpeed = 300;
 
-
-
 //Variables used by the system
 var menuInit = 0;
 
 var toggledMenus = [];
 var togglingMenu = 0;
+
+
+// Function to add new app icons
+function addAppIcon(icon, action) {
+  $("#menuButtons").append('<i onclick="' + action + '" class="menuButton fa ' + icon + '"></i>');
+}
 
 function initMenu() {
   //Init Menus
