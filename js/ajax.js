@@ -38,8 +38,6 @@ function updateClock() {
     var mo = today.getMonth();
     var month = "nil";
 
-    console.log(mo);
-
     switch(mo){
     	case 0: month = "januar"; break;
     	case 1: month = "februar"; break;
