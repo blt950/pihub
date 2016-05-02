@@ -1,2 +1,2 @@
 //Load modules, write their module name into the array
-var modules = ['ruter', 'window', 'food', 'settings'];
+var modules = ['ruter', 'window', 'settings'];
