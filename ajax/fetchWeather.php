@@ -1,5 +1,5 @@
 <?php
-    $xml=simplexml_load_file("http://www.yr.no/sted/Norge/Oslo/Oslo/Ammerud/varsel_time_for_time.xml") or die("Error: Cannot create object");
+    $xml=simplexml_load_file("http://www.yr.no/sted/Norge/Oslo/Oslo/Oslo/varsel_time_for_time.xml") or die("Error: Cannot create object");
 
     $weatherID = $xml->forecast->tabular->time[0]->symbol['number'];
     $weatherDesc = $xml->forecast->tabular->time[0]->symbol['name'];
