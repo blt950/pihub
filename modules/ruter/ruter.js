@@ -37,6 +37,7 @@ function updateRuter(){
 
 						var line = data[i]["LineRef"];
 						var dest = data[i]["DestinationName"];
+						var dest = dest.split(" ", 1);
 
 						var time = data[i]["ExpectedArrivalTime"];
 						var time = time.substr(6, 13);
